@@ -8,7 +8,7 @@ class Line extends AnimatedWidget {
   final Function(Note) onTileTap;
 
   const Line(
-      { Key? key,
+      {Key? key,
       required this.currentNotes,
       required this.onTileTap,
       required this.lineNumber,
