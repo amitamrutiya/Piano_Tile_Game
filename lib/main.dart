@@ -6,10 +6,12 @@ import 'package:piano_tile/song_provider.dart';
 import 'package:piano_tile/line_divider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,17 +20,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Piano(),
+      home: const Piano(),
     );
   }
 }
 
 class Piano extends StatefulWidget {
+  const Piano({super.key});
+
   @override
-  _PianoState createState() => _PianoState();
+  PianoState createState() => PianoState();
 }
 
-class _PianoState extends State<Piano> with SingleTickerProviderStateMixin {
+class PianoState extends State<Piano> with SingleTickerProviderStateMixin {
   AudioPlayer player = AudioPlayer();
   List<Note> notes = initNotes();
   AnimationController? animationController;
@@ -82,13 +86,13 @@ class _PianoState extends State<Piano> with SingleTickerProviderStateMixin {
           Row(
             children: <Widget>[
               _drawLine(0),
-              LineDivider(),
+              const LineDivider(),
               _drawLine(1),
-              LineDivider(),
+              const LineDivider(),
               _drawLine(2),
-              LineDivider(),
+              const LineDivider(),
               _drawLine(3),
-              LineDivider(),
+              const LineDivider(),
               _drawLine(4),
             ],
           ),
@@ -121,7 +125,7 @@ class _PianoState extends State<Piano> with SingleTickerProviderStateMixin {
           elevation: 0,
           title: Text("Score: $points"),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               onPressed: () => Navigator.of(context).pop(),
               child: const Text("RESTART"),
             ),
@@ -135,7 +139,6 @@ class _PianoState extends State<Piano> with SingleTickerProviderStateMixin {
     bool areAllPreviousTapped = notes
         .sublist(0, note.orderNumber)
         .every((n) => n.state == NoteState.tapped);
-    print(areAllPreviousTapped);
     if (areAllPreviousTapped) {
       if (!hasStarted) {
         setState(() => hasStarted = true);
