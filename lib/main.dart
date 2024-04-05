@@ -121,7 +121,7 @@ class _PianoState extends State<Piano> with SingleTickerProviderStateMixin {
           elevation: 0,
           title: Text("Score: $points"),
           actions: <Widget>[
-            FlatButton(
+            OutlinedButton(
               onPressed: () => Navigator.of(context).pop(),
               child: const Text("RESTART"),
             ),
